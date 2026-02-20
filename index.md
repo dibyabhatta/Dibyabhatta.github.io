@@ -5,11 +5,11 @@ Solomon Lab
 Australian National University  
 
 ## Research Interests
+- Zymoseptoria Wheat Interaction
 - Plant-Microbe Interaction
 - Heavy Metal Stress
-- Plant Stress Biology
-- Integrated Pest Management
-- Organic Farming
+- Molecular Plant Pathology
+  
 
 ## Publications
 Hormones and the antioxidant transduction pathway...  
