@@ -3,9 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <title>{{ page.title }}</title>
-
+<!-- Font Awesome for icons -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
 <style>
 body {
     font-family: Arial, sans-serif;
@@ -14,9 +13,11 @@ body {
     background: #f0f4f8;
     color: #333;
 }
+
+/* Header with wheat background */
 header {
     text-align: center;
-    background: url('/IMG_3450.jpeg') no-repeat center center;
+    background: url('{{ site.baseurl }}/IMG_3450.jpeg') no-repeat center center;
     background-size: cover;
     color: #fff;
     padding: 80px 20px;
@@ -51,59 +52,138 @@ header p {
     font-size: 20px;
     margin: 5px 0;
 }
-nav {
+
+/* Tabs */
+.tab {
     display: flex;
     justify-content: center;
-    background: white;
+    background: #fff;
     box-shadow: 0 2px 6px rgba(0,0,0,0.1);
     flex-wrap: wrap;
 }
-nav a {
-    padding: 15px 20px;
-    text-decoration: none;
+.tab button {
+    background: none;
+    border: none;
+    padding: 15px 25px;
+    cursor: pointer;
     font-weight: bold;
     color: #2e7d32;
+    font-size: 16px;
+    transition: background 0.3s, color 0.3s;
 }
-nav a:hover {
+.tab button:hover {
     background: #66bb6a;
-    color: white;
+    color: #fff;
+    border-radius: 5px;
 }
-main {
+.tab button.active {
+    background: #2e7d32;
+    color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* Tab content */
+.tabcontent {
+    display: none;
+    padding: 40px 20px;
     max-width: 900px;
-    margin: 40px auto;
-    background: white;
-    padding: 40px;
+    margin: 20px auto;
+    background: #fff;
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    animation: fadeEffect 0.5s;
 }
+
+/* Fade-in animation */
+@keyframes fadeEffect {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+/* Section background colors */
+#Home { background: #fff; }
+#Research { background: #e8f5e9; }
+#Publications { background: #fff8e1; }
+#CV { background: #f3e5f5; }
+#Contact { background: #e3f2fd; }
+
+/* CV photo inside CV section */
+.cv-photo {
+    float: right;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin-left: 20px;
+    object-fit: cover;
+}
+ul { margin-left: 20px; }
+ul li:hover { color: #0077cc; transform: translateX(5px); transition: 0.2s; }
+
+/* Responsive */
+@media (max-width: 600px) {
+    .cv-photo { float: none; display: block; margin: 0 auto 20px auto; }
+    .tab { flex-direction: column; }
+}
+
+/* Footer */
 footer {
     text-align: center;
     padding: 20px;
     font-size: 14px;
+    color: #555;
+}
+
+/* Back-to-top button */
+#topBtn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 12px 16px;
+    background: #2e7d32;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    display: none;
 }
 </style>
 </head>
-
 <body>
+  {{ content }}
 
-<header>
-    <img src="/profile.jpg">
-    <h1>Dibya Bhatta</h1>
-    <p>PhD Candidate | The Australian National University</p>
-</header>
+  <!-- Back to top button -->
+  <button id="topBtn" onclick="window.scrollTo({top:0, behavior:'smooth'});">↑ Top</button>
 
-<nav>
-    <a href="/">Home</a>
-    <a href="/scholarships">Scholarship Hub</a>
-</nav>
+  <footer>
+    © 2026 Dibya Bhatta • 
+    <a href="https://youtube.com/@Agri_dibu" target="_blank">YouTube</a> • 
+    <a href="https://scholar.google.com/citations?hl=ko&user=c-z-tTIAAAAJ" target="_blank">Google Scholar</a>
+  </footer>
 
-<main>
-    {{ content }}
-</main>
+  <script>
+  function openTab(evt, tabName) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(tabName).style.display = "block";
+    evt.currentTarget.className += " active";
+  }
 
-<footer>
-© 2026 Dibya Bhatta
-</footer>
-
+  window.onscroll = function() {
+    var btn = document.getElementById("topBtn");
+    if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+        btn.style.display = "block";
+    } else {
+        btn.style.display = "none";
+    }
+  };
+  </script>
 </body>
 </html>
