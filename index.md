@@ -1,6 +1,6 @@
 ---
-layout: default
-title: Home
+Layout: Default
+Title: Home
 ---
 ## About Me
 
